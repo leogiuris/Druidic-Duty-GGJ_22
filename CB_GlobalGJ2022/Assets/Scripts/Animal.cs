@@ -123,7 +123,7 @@ public class Animal : MonoBehaviour
             hungerTimer = Time.time;
         }
         if(hunger > chaseHunger)
-        {
+        {            
             chase = true;
             roaming = false;
         }

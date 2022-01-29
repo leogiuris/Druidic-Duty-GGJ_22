@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-
+    
     public static bool isPaused = false;
 
 
@@ -31,6 +32,11 @@ public class GameController : MonoBehaviour
     public GameObject planta;
     public GameObject Herb;
     public GameObject Pred;
+
+
+    // hud
+    public Slider barraEquilibrio;
+    public float equilibrio;
     
     void BeginGame()
     {
@@ -52,8 +58,6 @@ public class GameController : MonoBehaviour
 
     void ResetGame()
     {
-
-
         BeginGame();
     }
 
@@ -77,6 +81,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
         herbSpawnLocations = new Vector3[herb_init_spawns];
         predSpawnLocations = new Vector3[pred_init_spawns];
 
@@ -96,6 +101,9 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float unga = predadores.Count;
+        float bunga = herbivoros.Count;
+        equilibrio = 1/((unga + bunga)/ predadores.Count) ;
+        barraEquilibrio.value = equilibrio;
     }
 }

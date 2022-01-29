@@ -14,13 +14,14 @@ public class PlayerController : MonoBehaviour
 
     //interação
     public GameController gC;
-
     private bool plantar;
 
     public bool emArvore = false;
     public int sementes;
     public GameObject planta;
 
+    //mouse
+    public float castDistance;
 
     private MouseController mouse;
 
