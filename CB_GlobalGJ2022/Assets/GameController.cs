@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-
+    
     public static bool isPaused = false;
 
 
@@ -52,8 +52,6 @@ public class GameController : MonoBehaviour
 
     void ResetGame()
     {
-
-
         BeginGame();
     }
 
@@ -77,6 +75,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
         herbSpawnLocations = new Vector3[herb_init_spawns];
         predSpawnLocations = new Vector3[pred_init_spawns];
 
