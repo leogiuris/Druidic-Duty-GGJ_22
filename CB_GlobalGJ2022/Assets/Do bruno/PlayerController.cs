@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     //interação
     private bool plantar;
 
-    private bool emArvore = false;
+    public bool emArvore = false;
     public int sementes;
     public GameObject planta;
 

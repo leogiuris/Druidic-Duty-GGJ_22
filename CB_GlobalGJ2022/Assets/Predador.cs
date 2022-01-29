@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Predador : Animal
 {
-
+    public GameObject sPredador;
     void Hunt(GameObject presa)
     {
         this.hunger--;
@@ -16,6 +16,7 @@ public class Predador : Animal
         if(collision.transform.tag == "Presa")
         {
             Hunt(collision.gameObject);
+            gC.SpawnaAnimal(sPredador, transform.position);
         }
         if (collision.transform.tag == "Terreno")
         {
