@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Terreno
   - Presa
+  - arvore
+  - Predador
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Sight
   - 
   - 
   - 
