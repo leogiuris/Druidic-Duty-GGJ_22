@@ -18,8 +18,11 @@ public class Animal : MonoBehaviour
     public GameObject alvo;
 
     //componentes
+    [HideInInspector]
     public bool souPresa = false;
+    [HideInInspector]
     public GameController gC;
+    [HideInInspector]
     private Rigidbody2D rBody;
 
     //movimentação
@@ -35,6 +38,11 @@ public class Animal : MonoBehaviour
     public Vector2 direction;
     public float speed;
     public float chaseSpeed;
+    [HideInInspector]
+    public float tSpeed;
+    [HideInInspector]
+    public float tChaseSpeed;
+    [HideInInspector]
     public float flipper = 1;
 
 
@@ -42,6 +50,8 @@ public class Animal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tChaseSpeed = chaseSpeed;
+        tSpeed = speed;
         hunger = 0;
         gC = GameObject.Find("gameController").GetComponent<GameController>();
         rBody = gameObject.GetComponent<Rigidbody2D>();
@@ -95,10 +105,21 @@ public class Animal : MonoBehaviour
         }
         else
         {
-            if (Vector3.Distance(transform.position, danger.transform.position) > safeRange) danger = null;
-            if (danger == null) flee = false;
-            direction = transform.position - danger.transform.position;
-            rBody.velocity = direction.normalized * chaseSpeed;
+            if (danger != null)
+            {
+                
+                direction = transform.position - danger.transform.position;
+                rBody.velocity = direction.normalized * chaseSpeed;
+                if(Vector3.Distance(transform.position, danger.transform.position) > safeRange)
+                {
+                    danger = null;
+                    flee = false;
+                }
+            }
+            else
+            {
+                flee = false;
+            }
         }
     }
     public void GetClosestAlvo(List<GameObject> alvos)

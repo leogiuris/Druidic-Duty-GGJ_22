@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3587651537033366391}
   - component: {fileID: 8728712541761889776}
   - component: {fileID: 2319759803337559938}
+  - component: {fileID: 4457996371226166646}
   m_Layer: 0
   m_Name: planta
   m_TagString: arvore
@@ -121,3 +122,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4457996371226166646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666758857154935693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bea2f53a361d9846bede2f9c87846fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
