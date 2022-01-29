@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     //movimento
     private Rigidbody2D rBody;
     private float yDir ;
@@ -21,21 +22,33 @@ public class PlayerController : MonoBehaviour
     public GameObject planta;
 
 
+    private MouseController mouse;
+
+
+
+
     void Start()
     {
         gC = GameObject.Find("gameController").GetComponent<GameController>();
-        rBody = gameObject.GetComponent<Rigidbody2D>();   
+        rBody = gameObject.GetComponent<Rigidbody2D>();
+        mouse = GetComponent<MouseController>();
+
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
         InputManager();
     }
+
+
     void FixedUpdate()
     {
         Movimento();
     }
+
     private void InputManager()
     {
         yDir = Input.GetAxisRaw("Vertical");
@@ -43,27 +56,46 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Z))
         {
-            Plantar();
+            Plantar(transform.position);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+            Plantar(mouse.getMousePos());
         }
 
     }
+
     private void Movimento()
     {
         norm = new Vector2(xDir, yDir);
         rBody.velocity = norm.normalized  * speed;
     }
-    private void Plantar()
+
+
+
+
+    private void Plantar(Vector3 t)
     {
-        if(sementes > 0 && ! emArvore)
+        Debug.Log(t.x);
+
+        if(sementes > 0 && !mouse.GetComponent<MouseController>().emArvore)
         {
-            GameObject novaPlanta = Instantiate(planta, transform.position, transform.rotation);
+            GameObject novaPlanta = Instantiate(planta, t, transform.rotation);
             gC.plantas.Add(novaPlanta);
             sementes--;
         }
+        else
+        {
+            Debug.Log("não pode plantar");
+        }
     }
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag ==("arvore"))
+        if(collision.tag == ("arvore"))
         {
             emArvore = true;
         }
@@ -79,4 +111,6 @@ public class PlayerController : MonoBehaviour
             emArvore = false;
         }
     }
+
+
 }
