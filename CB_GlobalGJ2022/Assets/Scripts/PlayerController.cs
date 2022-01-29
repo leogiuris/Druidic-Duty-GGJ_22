@@ -87,7 +87,8 @@ public class PlayerController : MonoBehaviour
     {
         t.z = 0;
 
-        if(sementes > 0 && !mouse.GetComponent<MouseController>().emArvore)
+
+        if(sementes > 0 && !mouse.GetComponent<MouseController>().emArvore && gC.ChecaSeTaDentro(t))
         {
             GameObject novaPlanta = Instantiate(planta, t, transform.rotation);
             gC.plantas.Add(novaPlanta);
