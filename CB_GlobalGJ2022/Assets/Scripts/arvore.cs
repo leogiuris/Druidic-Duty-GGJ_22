@@ -7,6 +7,8 @@ public class arvore : MonoBehaviour
     public PlayerController player;
     public MouseController mouse;
     private bool mousehere = false;
+    private bool comido = false;
+    private GameObject dono;
 
     private void Start()
     {
@@ -32,5 +34,20 @@ public class arvore : MonoBehaviour
         mouse.emArvore = false;
         mousehere = false;
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Presa" && !comido && dono == null)
+        {
+            dono = collision.gameObject;           
+        }
+    }
+    private void Update()
+    {
+        if(dono != null && !comido)
+        {
+            comido = true;
+            Presa presaScript = dono.gameObject.GetComponent<Presa>();
+            presaScript.EatVeg(gameObject);
+        }
+    }
 }
