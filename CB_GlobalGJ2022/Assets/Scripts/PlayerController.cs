@@ -24,12 +24,14 @@ public class PlayerController : MonoBehaviour
     public float castDistance;
 
     private MouseController mouse;
-
+    //animação
+    private Animator anim;
 
 
 
     void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
         gC = GameObject.Find("gameController").GetComponent<GameController>();
         rBody = gameObject.GetComponent<Rigidbody2D>();
         mouse = GetComponent<MouseController>();
@@ -64,6 +66,10 @@ public class PlayerController : MonoBehaviour
         {
             
             Plantar(mouse.getMousePos());
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            anim.SetTrigger("boom");
         }
 
     }

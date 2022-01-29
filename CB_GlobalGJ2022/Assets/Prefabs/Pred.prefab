@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5056467688164316298}
   m_Layer: 6
   m_Name: danger
-  m_TagString: Predador
+  m_TagString: Danger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   gC: {fileID: 0}
   danger: {fileID: 0}
   flee: 0
+  safeRange: 0
   roaming: 1
   minMoveTime: 4
   maxMoveTime: 6
@@ -134,8 +135,11 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   speed: 4
   chaseSpeed: 8
+  tSpeed: 0
+  tChaseSpeed: 0
   flipper: 1
   sPredador: {fileID: 7858850484775372117}
+  stunTime: 2
 --- !u!212 &6407922199900062969
 SpriteRenderer:
   m_ObjectHideFlags: 0

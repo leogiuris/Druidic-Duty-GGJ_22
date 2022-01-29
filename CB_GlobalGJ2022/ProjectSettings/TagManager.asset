@@ -8,6 +8,7 @@ TagManager:
   - Presa
   - arvore
   - Predador
+  - Danger
   layers:
   - Default
   - TransparentFX

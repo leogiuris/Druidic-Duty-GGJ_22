@@ -28,7 +28,7 @@ public class Presa : Animal
             EatVeg(collision.gameObject);
             gC.SpawnaAnimal(sPresa, transform.position);
         }
-        if (collision.transform.tag == "Predador")
+        if (collision.transform.tag == "Danger")
         {
             flee = true;
             danger = collision.gameObject;
@@ -38,17 +38,6 @@ public class Presa : Animal
     {
        
 
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "Predador" && flee)
-        {
-            if (collision.gameObject == danger.gameObject)
-            {
-                danger = null;
-                flee = false;
-            }
-        }
     }
 
 }
