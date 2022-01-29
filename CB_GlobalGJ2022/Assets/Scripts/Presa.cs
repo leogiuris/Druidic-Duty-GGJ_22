@@ -13,7 +13,9 @@ public class Presa : Animal
         hunger--;
         gC.SpawnaAnimal(sPresa, transform.position);
         minhaPlanta = planta;
+        gC.plantas.Remove(planta);
         Destroy(planta);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

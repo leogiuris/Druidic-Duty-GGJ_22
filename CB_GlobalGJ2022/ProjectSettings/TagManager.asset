@@ -9,6 +9,7 @@ TagManager:
   - arvore
   - Predador
   - Danger
+  - GameZone
   layers:
   - Default
   - TransparentFX

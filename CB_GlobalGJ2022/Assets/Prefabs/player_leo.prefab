@@ -169,6 +169,7 @@ MonoBehaviour:
   emArvore: 0
   pos: {x: 0, y: 0, z: 0}
   cam: {fileID: 0}
+  zona: {fileID: 2604781263301428855, guid: ada6e03ed92f27e4495c51db17ed3148, type: 3}
 --- !u!95 &7422514982503455256
 Animator:
   serializedVersion: 3

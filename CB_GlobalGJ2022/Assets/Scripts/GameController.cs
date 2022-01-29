@@ -12,7 +12,8 @@ public class GameController : MonoBehaviour
     public int yWalls = 10;
     public int xWalls = 20;
 
-
+    public Transform extremo1;
+    public Transform extremo2;
 
     public int maxQtdAnimais = 20;
     public float ratioHerb;
@@ -38,6 +39,23 @@ public class GameController : MonoBehaviour
     public Slider barraEquilibrio;
     public float equilibrio;
     
+    public bool ChecaSeTaDentro(Vector3 v)
+    {
+        Vector3 e1 = extremo1.position;
+        Vector3 e2 = extremo2.position;
+
+        if (v.x > e2.x || v.x < e1.x)
+        {
+            return false;
+        }
+        else if (v.y > e1.y || v.y < e2.y)
+        {
+            return false;
+        }
+        else return true;
+    }
+
+
     void BeginGame()
     {
         int i = 0;
