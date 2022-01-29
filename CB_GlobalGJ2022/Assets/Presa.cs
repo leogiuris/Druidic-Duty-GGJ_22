@@ -10,6 +10,7 @@ public class Presa : Animal
     void EatVeg(GameObject planta)
     {
         hunger--;
+        gC.plantas.Remove(planta);
         Destroy(planta);
     }
 
@@ -27,6 +28,27 @@ public class Presa : Animal
             EatVeg(collision.gameObject);
             gC.SpawnaAnimal(sPresa, transform.position);
         }
+        if (collision.transform.tag == "Predador")
+        {
+            flee = true;
+            danger = collision.gameObject;
+        }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+       
 
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Predador" && flee)
+        {
+            if (collision.gameObject == danger.gameObject)
+            {
+                danger = null;
+                flee = false;
+            }
+        }
+    }
+
+}

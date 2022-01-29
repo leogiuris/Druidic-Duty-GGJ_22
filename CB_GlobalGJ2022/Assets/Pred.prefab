@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4198442609969774956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6911688396765473740}
+  - component: {fileID: 5056467688164316298}
+  m_Layer: 6
+  m_Name: danger
+  m_TagString: Predador
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6911688396765473740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4198442609969774956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7858850484775372106}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &5056467688164316298
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4198442609969774956}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &7858850484775372117
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,7 +62,7 @@ GameObject:
   - component: {fileID: -5585637871871370601}
   m_Layer: 0
   m_Name: Pred
-  m_TagString: Untagged
+  m_TagString: Predador
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +77,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.9069016, y: 0.10151701, z: -0.43472967}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6911688396765473740}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54,7 +102,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4153314126413381339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,10 +116,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hunger: 0
+  chaseHunger: 2
   maxHunger: 5
   hungerTime: 10
   age: 0
+  chase: 0
+  alvo: {fileID: 0}
+  souPresa: 0
   gC: {fileID: 0}
+  danger: {fileID: 0}
+  flee: 0
   roaming: 1
   minMoveTime: 4
   maxMoveTime: 6
@@ -79,6 +133,7 @@ MonoBehaviour:
   moveTimer: 0
   direction: {x: 0, y: 0}
   speed: 4
+  chaseSpeed: 8
   flipper: 1
   sPredador: {fileID: 7858850484775372117}
 --- !u!212 &6407922199900062969

@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 norm;
 
     //interação
+    public GameController gC;
+
     private bool plantar;
 
     public bool emArvore = false;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        gC = GameObject.Find("gameController").GetComponent<GameController>();
         rBody = gameObject.GetComponent<Rigidbody2D>();   
     }
 
@@ -54,6 +57,7 @@ public class PlayerController : MonoBehaviour
         if(sementes > 0 && ! emArvore)
         {
             GameObject novaPlanta = Instantiate(planta, transform.position, transform.rotation);
+            gC.plantas.Add(novaPlanta);
             sementes--;
         }
     }
