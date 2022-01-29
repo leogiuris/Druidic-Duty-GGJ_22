@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7844831487465894454}
   m_Layer: 0
   m_Name: Herb
-  m_TagString: Untagged
+  m_TagString: Presa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hunger: 0
   maxHunger: 5
-  hungerTime: 3
+  hungerTime: 5
   age: 0
   gC: {fileID: 0}
   roaming: 1
@@ -59,6 +59,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   speed: 3
   flipper: 1
+  sPresa: {fileID: 8093214911763347996}
 --- !u!50 &8093214911763347999
 Rigidbody2D:
   serializedVersion: 4
