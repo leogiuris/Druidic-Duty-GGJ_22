@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour
 {
-
+    //fome
     public int hunger;
+    public int maxHunger;
+    private float hungerTimer;
+    public float hungerTime;
+
     public int age;
     //componentes
     private Rigidbody2D rBody;
@@ -18,6 +22,7 @@ public class Animal : MonoBehaviour
     public float moveTimer;
     public Vector2 direction;
     public float speed;
+    public float flipper = 1;
 
 
 
@@ -27,18 +32,21 @@ public class Animal : MonoBehaviour
         rBody = gameObject.GetComponent<Rigidbody2D>();
         moveTimer = Time.time;
         moveTime = Random.Range(minMoveTime, maxMoveTime);        
-        direction = new Vector2(Random.Range(-1, 2), Random.Range(-1, 2));
+        direction = Random.insideUnitCircle;
+
+        hungerTimer = hungerTime;
+
     }
 
     void Move()
     {
         if(roaming)
         {
-            rBody.velocity = direction.normalized * speed;
+            rBody.velocity = direction.normalized * speed * flipper;
             if(Time.time - moveTimer > moveTime)
             {
                 Debug.Log("mudei dir");
-                direction = new Vector2(Random.Range(-1, 2), Random.Range(-1, 2));
+                direction = Random.insideUnitCircle;
                 moveTimer = Time.time;
                 moveTime = Random.Range(minMoveTime, maxMoveTime);
             }
@@ -47,7 +55,15 @@ public class Animal : MonoBehaviour
 
     public void Eat()
     {
-
+        if(Time.time - hungerTimer > hungerTime)
+        {
+            hunger++;
+            hungerTimer = Time.time;
+        }
+        if(hunger == maxHunger)
+        {
+            Die();
+        }
     }
     public void Breed()
     {
@@ -62,7 +78,7 @@ public class Animal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Eat();
     }
     void FixedUpdate()
     {

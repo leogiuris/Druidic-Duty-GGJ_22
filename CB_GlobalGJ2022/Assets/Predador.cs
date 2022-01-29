@@ -17,5 +17,9 @@ public class Predador : Animal
         {
             Hunt(collision.gameObject);
         }
+        if (collision.transform.tag == "Terreno")
+        {
+            flipper = flipper * -1;
+        }
     }
 }
