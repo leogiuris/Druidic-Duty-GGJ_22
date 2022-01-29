@@ -52,7 +52,8 @@ public class GameController : MonoBehaviour
 
     public void SpawnaAnimal(GameObject animal, Vector3 pos)
     {
-        Instantiate(animal, pos, transform.rotation);
+        GameObject newAnimal = Instantiate(animal, pos, transform.rotation);
+        
         if (animal.GetComponent<Presa>())
             herbQtd++;
     }
@@ -70,7 +71,7 @@ public class GameController : MonoBehaviour
         }
         for (int i = 0; i < pred_init_spawns; i++)
         {
-            predSpawnLocations[i] = new Vector3((Random.value * 40) - 20, (Random.value * 40) - 20);
+            predSpawnLocations[i] = new Vector3((Random.value * 2 * xWalls) - xWalls, (Random.value * 2 * yWalls) - yWalls);
 
         }
         BeginGame();
