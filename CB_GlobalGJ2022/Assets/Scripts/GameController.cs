@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     
-    public static bool isPaused = false;
-
-
+    public bool isPaused = false;
+    public bool isPlaying = false;
+    public float WinTime = 600;
     public int yWalls = 10;
     public int xWalls = 20;
 
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviour
     public GameObject planta;
     public GameObject Herb;
     public GameObject Pred;
+    public GameObject pausePanel;
 
 
     // hud
@@ -56,9 +58,14 @@ public class GameController : MonoBehaviour
     }
 
 
+
     void BeginGame()
     {
         int i = 0;
+        isPlaying = true;
+        isPaused = false;
+        Time.timeScale = 1f;
+
         while (i < herb_init_spawns)
         {
             SpawnaAnimal(Herb, herbSpawnLocations[i]);
@@ -76,7 +83,28 @@ public class GameController : MonoBehaviour
 
     void ResetGame()
     {
-        BeginGame();
+        SceneManager.LoadScene("cena_do_leo");
+
+    }
+
+
+    public void Pause()
+    {
+        if (isPaused)
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1f;
+            isPaused = false;
+            isPlaying = true;
+        }
+        else
+        {
+            pausePanel.SetActive(true);
+            Time.timeScale = 0f;
+            isPaused = true;
+            isPlaying = false;
+        }
+
     }
 
 
@@ -96,12 +124,32 @@ public class GameController : MonoBehaviour
         }
     }
 
+
+    public bool LoseCondition()
+    {
+        if(herbivoros.Count <= 0)
+        {
+            // herbivoros extintos
+            Debug.Log("herbivoros extintos");
+            ResetGame();
+        }
+        if (predadores.Count <= 0)
+        {
+            // predadores extintos
+            Debug.Log("predadores extintos");
+            ResetGame();
+        }
+        return false;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = true;
         herbSpawnLocations = new Vector3[herb_init_spawns];
         predSpawnLocations = new Vector3[pred_init_spawns];
+        Timer.StartTimer();
 
         for (int i = 0; i< herb_init_spawns; i++)
         {
@@ -116,6 +164,32 @@ public class GameController : MonoBehaviour
         BeginGame();
     }
 
+
+    void GC_input()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Pause();
+        }
+        if (Timer.getTime() >= WinTime)
+        {
+            Debug.Log("ganhou");
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log(Timer.getTime());
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetGame();
+        }
+    }
+
+    public void ExitToStartMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -123,5 +197,6 @@ public class GameController : MonoBehaviour
         float bunga = herbivoros.Count;
         equilibrio = 1/((unga + bunga)/ predadores.Count) ;
         barraEquilibrio.value = equilibrio;
+        GC_input();
     }
 }

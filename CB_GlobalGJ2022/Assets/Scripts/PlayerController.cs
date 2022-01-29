@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         InputManager();
+        
     }
 
 
@@ -54,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
     private void InputManager()
     {
+        if (!gC.isPlaying) return;
+
         yDir = Input.GetAxisRaw("Vertical");
         xDir = Input.GetAxisRaw("Horizontal");
 
@@ -64,14 +67,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            
             Plantar(mouse.getMousePos());
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
             anim.SetTrigger("boom");
         }
-
+        
     }
 
     private void Movimento()
