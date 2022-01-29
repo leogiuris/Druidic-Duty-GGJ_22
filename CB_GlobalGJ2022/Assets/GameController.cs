@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public int yWalls = 10;
+    public int xWalls = 10;
+
+
+
+    public int maxQtdAnimais = 20;
     public float ratioHerb;
     public int herbQtd;
     public int predQtd;
@@ -13,6 +19,8 @@ public class GameController : MonoBehaviour
 
     Vector3[] herbSpawnLocations;
     Vector3[] predSpawnLocations;
+
+
     public GameObject Herb;
     public GameObject Pred;
     
@@ -45,6 +53,8 @@ public class GameController : MonoBehaviour
     public void SpawnaAnimal(GameObject animal, Vector3 pos)
     {
         Instantiate(animal, pos, transform.rotation);
+        if (animal.GetComponent<Presa>())
+            herbQtd++;
     }
 
     // Start is called before the first frame update
@@ -55,7 +65,7 @@ public class GameController : MonoBehaviour
 
         for (int i = 0; i< herb_init_spawns; i++)
         {
-            herbSpawnLocations[i] = new Vector3((Random.value * 40) - 20, (Random.value * 40) - 20);
+            herbSpawnLocations[i] = new Vector3((Random.value * 2 * xWalls) - xWalls, (Random.value * 2 * yWalls) - yWalls);
 
         }
         for (int i = 0; i < pred_init_spawns; i++)

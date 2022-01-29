@@ -18,6 +18,10 @@ public class Presa : Animal
         {
             EatVeg(collision.gameObject);
         }
+        if (collision.transform.tag == "Terreno")
+        {
+            flipper = flipper * -1;
+        }
     }
 
 }
