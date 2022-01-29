@@ -57,12 +57,16 @@ public class PlayerController : MonoBehaviour
             sementes--;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag ==("arvore"))
         {
             emArvore = true;
         }
+        else
+        {
+            emArvore = false;
+        }    
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
