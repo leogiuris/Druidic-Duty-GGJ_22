@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     //movimento
+    public float dir = 1;
     private Rigidbody2D rBody;
     private float yDir ;
     private float xDir ;
@@ -54,9 +55,9 @@ public class PlayerController : MonoBehaviour
 
     private void InputManager()
     {
+
         yDir = Input.GetAxisRaw("Vertical");
         xDir = Input.GetAxisRaw("Horizontal");
-
         if(Input.GetKeyDown(KeyCode.Z))
         {
             Plantar(transform.position);
@@ -71,6 +72,11 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetTrigger("boom");
         }
+        if(xDir != 0)
+        {
+            dir = xDir;
+        }
+        transform.localScale = new Vector3(dir, 1, 1);
 
     }
 
@@ -78,6 +84,15 @@ public class PlayerController : MonoBehaviour
     {
         norm = new Vector2(xDir, yDir);
         rBody.velocity = norm.normalized  * speed;
+
+        if(rBody.velocity!= Vector2.zero)
+        {
+            anim.SetBool("moving", true);
+        }
+        else
+        {
+            anim.SetBool("moving", false);
+        }
     }
 
 

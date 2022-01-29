@@ -19,6 +19,8 @@ public class Animal : MonoBehaviour
 
     //componentes
     [HideInInspector]
+    public Animator anim;
+    [HideInInspector]
     public bool souPresa = false;
     [HideInInspector]
     public GameController gC;
@@ -54,6 +56,7 @@ public class Animal : MonoBehaviour
         tSpeed = speed;
         hunger = 0;
         gC = GameObject.Find("gameController").GetComponent<GameController>();
+        anim = gameObject.GetComponent<Animator>();
         rBody = gameObject.GetComponent<Rigidbody2D>();
         moveTimer = Time.time;
         moveTime = Random.Range(minMoveTime, maxMoveTime);        
@@ -82,9 +85,7 @@ public class Animal : MonoBehaviour
                 rBody.velocity = direction.normalized * speed * flipper;
                 if (Time.time - moveTimer > moveTime)
                 {
-                    direction = Random.insideUnitCircle;
-                    moveTimer = Time.time;
-                    moveTime = Random.Range(minMoveTime, maxMoveTime);
+                    RandomizeDirection();
                 }
             }
             if (chase)
@@ -121,6 +122,13 @@ public class Animal : MonoBehaviour
                 flee = false;
             }
         }
+        transform.localScale = new Vector3(-Mathf.Sign(rBody.velocity.x), 1, 1);
+    }
+    public void RandomizeDirection()
+    {
+        direction = Random.insideUnitCircle;
+        moveTimer = Time.time;
+        moveTime = Random.Range(minMoveTime, maxMoveTime);
     }
     public void GetClosestAlvo(List<GameObject> alvos)
     {
