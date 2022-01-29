@@ -12,6 +12,7 @@ public class Animal : MonoBehaviour
 
     public int age;
     //componentes
+    public GameController gC;
     private Rigidbody2D rBody;
 
     //movimentação
@@ -29,6 +30,7 @@ public class Animal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gC = GameObject.Find("gameController").GetComponent<GameController>();
         rBody = gameObject.GetComponent<Rigidbody2D>();
         moveTimer = Time.time;
         moveTime = Random.Range(minMoveTime, maxMoveTime);        
@@ -72,7 +74,15 @@ public class Animal : MonoBehaviour
 
     public void Die()
     {
-
+        if(gameObject.GetComponent<Presa>())
+        {
+            gC.herbQtd--;
+        }
+        if (gameObject.GetComponent<Predador>())
+        {
+            gC.predQtd--;
+        }
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
