@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     private void Plantar(Vector3 t)
     {
-        Debug.Log(t.x);
+        t.z = 0;
 
         if(sementes > 0 && !mouse.GetComponent<MouseController>().emArvore)
         {

@@ -15,6 +15,7 @@ public class MouseController : MonoBehaviour
 
     public Vector3 getMousePos()
     {
+
         return cam.ScreenToWorldPoint(Input.mousePosition);
         
     }

@@ -6,6 +6,7 @@ public class arvore : MonoBehaviour
 {
     public PlayerController player;
     public MouseController mouse;
+    private bool mousehere = false;
 
     private void Start()
     {
@@ -13,9 +14,23 @@ public class arvore : MonoBehaviour
         mouse = GameObject.FindGameObjectWithTag("Player").GetComponent<MouseController>();
     }
 
+    private void OnDestroy()
+    {
+        if (mousehere)
+        {
+            mouse.emArvore = false;
+        }
+    }
+
     private void OnMouseOver()
     {
         mouse.emArvore = true;
+        mousehere = true;
+    }
+    private void OnMouseExit()
+    {
+        mouse.emArvore = false;
+        mousehere = false;
     }
 
 }
