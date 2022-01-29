@@ -5,12 +5,14 @@ using UnityEngine;
 public class Presa : Animal
 {
     public GameObject sPresa;
+    private GameObject minhaPlanta;
     bool isFleeing;
 
-    void EatVeg(GameObject planta)
+    public void EatVeg(GameObject planta)
     {
         hunger--;
-        gC.plantas.Remove(planta);
+        gC.SpawnaAnimal(sPresa, transform.position);
+        minhaPlanta = planta;
         Destroy(planta);
     }
 
@@ -25,8 +27,7 @@ public class Presa : Animal
     {
         if (collision.transform.tag == "arvore")
         {
-            EatVeg(collision.gameObject);
-            gC.SpawnaAnimal(sPresa, transform.position);
+            
         }
         if (collision.transform.tag == "Danger")
         {
