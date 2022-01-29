@@ -4,30 +4,31 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-
     public float ratioHerb;
     public int herbQtd;
     public int predQtd;
 
-    int herb_init_spawns = 5;
+    public int herb_init_spawns = 2;
+    public int pred_init_spawns = 2;
 
-
-
-    GameObject Herb;
-    GameObject Pred;
+    Vector3[] herbSpawnLocations;
+    Vector3[] predSpawnLocations;
+    public GameObject Herb;
+    public GameObject Pred;
     
     void BeginGame()
     {
         int i = 0;
         while (i < herb_init_spawns)
         {
-            GameObject initHerb = Instantiate(Herb, transform.position, transform.rotation);
+            SpawnaAnimal(Herb, herbSpawnLocations[i]);
             i++;
         }
+
         i = 0;
         while (i < herb_init_spawns)
         {
-            GameObject initPred = Instantiate(Pred, transform.position, transform.rotation);
+            SpawnaAnimal(Pred, predSpawnLocations[i]);
             i++;
         }
     }
@@ -41,9 +42,27 @@ public class GameController : MonoBehaviour
     }
 
 
+    public void SpawnaAnimal(GameObject animal, Vector3 pos)
+    {
+        Instantiate(animal, pos, transform.rotation);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        herbSpawnLocations = new Vector3[herb_init_spawns];
+        predSpawnLocations = new Vector3[pred_init_spawns];
+
+        for (int i = 0; i< herb_init_spawns; i++)
+        {
+            herbSpawnLocations[i] = new Vector3((Random.value * 40) - 20, (Random.value * 40) - 20);
+
+        }
+        for (int i = 0; i < pred_init_spawns; i++)
+        {
+            predSpawnLocations[i] = new Vector3((Random.value * 40) - 20, (Random.value * 40) - 20);
+
+        }
         BeginGame();
     }
 
