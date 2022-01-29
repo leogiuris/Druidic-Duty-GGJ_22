@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+
+    public static bool isPaused = false;
+
+
     public int yWalls = 10;
-    public int xWalls = 10;
+    public int xWalls = 20;
 
 
 
@@ -54,7 +58,7 @@ public class GameController : MonoBehaviour
     {
         GameObject newAnimal = Instantiate(animal, pos, transform.rotation);
         
-        if (animal.GetComponent<Presa>())
+        if(animal.GetComponent<Presa>())
             herbQtd++;
     }
 
