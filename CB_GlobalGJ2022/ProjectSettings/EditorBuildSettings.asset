@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 96c796b67e040a84c8e623edeb2d54f1
   - enabled: 1
-    path: Assets/Scenes/cena_do_leo.unity
-    guid: 54f1d97a9e2fca24cb1497cc3f2af2e5
+    path: Assets/Scenes/Tutorial.unity
+    guid: 10bbf50b08485b944a757d67cb0c5a72
+  - enabled: 1
+    path: Assets/Scenes/cena_do_leo2.unity
+    guid: 37b8423a10ba6d84ca2b475026f0c8b8
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

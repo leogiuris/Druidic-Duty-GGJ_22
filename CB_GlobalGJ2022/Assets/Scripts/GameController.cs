@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public PlayerController player;
 
     public bool isPaused = false;
     public bool isPlaying = false;
@@ -50,6 +51,13 @@ public class GameController : MonoBehaviour
     public Slider barraEquilibrio;
     public float equilibrio;
     public Text textoTempo;
+    public GameObject bushUI;
+    public GameObject berryUI;
+    public GameObject herbExImg;
+    public GameObject PredExImg;
+    
+
+
 
 
 
@@ -76,9 +84,12 @@ public class GameController : MonoBehaviour
         isPlaying = true;
         isPaused = false;
         gameOver = false;
-
+        herbExImg.SetActive(false);
+        PredExImg.SetActive(false);
         pausePanel.SetActive(false);
         gameOverPanel.SetActive(false);
+        berryUI.SetActive(true);
+        bushUI.SetActive(true);
         Time.timeScale = 1f;
 
         while (i < herb_init_spawns)
@@ -168,13 +179,13 @@ public class GameController : MonoBehaviour
         if (herbivoros.Count <= 0)
         {
             // herbivoros extintos
-            
+            herbExImg.SetActive(true);
             GameOver();
         }
         if (predadores.Count <= 0)
         {
             // predadores extintos
-            
+            PredExImg.SetActive(true);
             GameOver();
         }
         
@@ -184,7 +195,10 @@ public class GameController : MonoBehaviour
     void GameOver()
     {
         isPlaying = false;
+
         gameOver = true;
+        berryUI.SetActive(false);
+        bushUI.SetActive(false);
         barraEquilibrio.gameObject.SetActive(false);
         Time.timeScale = 0f;
         gameOverPanel.SetActive(true);
@@ -265,12 +279,19 @@ public class GameController : MonoBehaviour
         float tempo = Timer.getTime();
         float unga = predadores.Count;
         float bunga = herbivoros.Count;
+        int semen2 = player.sementes;
         equilibrio = 1 / ((unga + bunga) / predadores.Count);
         barraEquilibrio.value = equilibrio;
 
-        if(!gameOver) textoTempo.text = tempo.ToString("F1").Replace(',', '.'); ;
+        if (!gameOver)
+        {
+            berryUI.GetComponentInChildren<Text>().text = semen2.ToString();
+            bushUI.GetComponentInChildren<Text>().text = player.paredes.ToString();
+            textoTempo.text = tempo.ToString("F1").Replace(',', '.'); ;
+        }
 
         GC_input();
+
         if (tempo - lastSpawnTime > intervaloPlanta)
         {
             lastSpawnTime = tempo;
