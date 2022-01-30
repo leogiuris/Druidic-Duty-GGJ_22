@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    private float init;
+
+    private static Timer _instance;
+    public static Timer Instance { get { return _instance; } }
+
+    private static float init;
 
 
-    public void StartTimer()
+    public static void StartTimer()
     {
         init = Time.timeSinceLevelLoad;
     }
 
-    public float getTime()
+    public static float getTime()
     {
         return Time.timeSinceLevelLoad - init;
     }
 
-    private void Update()
-    {
-
-    }
 
 }

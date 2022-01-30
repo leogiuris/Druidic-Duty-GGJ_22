@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour
 {
 
     //movimento
-    public float dir = 1;
     private Rigidbody2D rBody;
-    private float yDir ;
-    private float xDir ;
+    private float dir;
+    private float yDir;
+    private float xDir;
     public float speed;
     private Vector2 norm;
 
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         InputManager();
+
     }
 
 
@@ -55,37 +56,37 @@ public class PlayerController : MonoBehaviour
 
     private void InputManager()
     {
+        if (!gC.isPlaying) return;
 
         yDir = Input.GetAxisRaw("Vertical");
         xDir = Input.GetAxisRaw("Horizontal");
-        if(Input.GetKeyDown(KeyCode.Z))
+
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             Plantar(transform.position);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            
             Plantar(mouse.getMousePos());
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
             anim.SetTrigger("boom");
         }
-        if(xDir != 0)
-        {
-            dir = xDir;
-        }
-        transform.localScale = new Vector3(dir, 1, 1);
 
     }
 
     private void Movimento()
     {
         norm = new Vector2(xDir, yDir);
-        rBody.velocity = norm.normalized  * speed;
-
-        if(rBody.velocity!= Vector2.zero)
+        rBody.velocity = norm.normalized * speed;
+        if(xDir != 0)
+        {
+            dir = xDir;
+        }
+        transform.localScale = new Vector3(dir, 1, 1);
+        if(rBody.velocity != Vector2.zero)
         {
             anim.SetBool("moving", true);
         }
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour
         t.z = 0;
 
 
-        if(sementes > 0 && !mouse.GetComponent<MouseController>().emArvore && gC.ChecaSeTaDentro(t))
+        if (sementes > 0 && !mouse.GetComponent<MouseController>().emArvore && gC.ChecaSeTaDentro(t))
         {
             GameObject novaPlanta = Instantiate(planta, t, transform.rotation);
             gC.plantas.Add(novaPlanta);
@@ -118,14 +119,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == ("arvore"))
+        if (collision.tag == ("arvore"))
         {
             emArvore = true;
         }
         else
         {
             emArvore = false;
-        }    
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

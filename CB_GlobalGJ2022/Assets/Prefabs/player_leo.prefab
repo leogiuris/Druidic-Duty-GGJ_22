@@ -105,7 +105,7 @@ MonoBehaviour:
   gC: {fileID: 0}
   emArvore: 0
   sementes: 54
-  planta: {fileID: 1666758857154935693, guid: 2482a6a394ade924785d86d9b60b336f, type: 3}
+  planta: {fileID: 2353302135356920779, guid: 2482a6a394ade924785d86d9b60b336f, type: 3}
   castDistance: 0
 --- !u!50 &3496615417137297041
 Rigidbody2D:
