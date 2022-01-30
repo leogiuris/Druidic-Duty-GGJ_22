@@ -124,10 +124,14 @@ public class GameController : MonoBehaviour
 
     public void RandomPlantSpawn()
     {
-        Vector3 v1 = new Vector3(  (x1+Random.value*(Mathf.Abs(x1)+x2))  , (y1+Random.value*(Mathf.Abs(y1)+y2))  ) ;
+        if(plantas.Count < 80)
+        {
+            Vector3 v1 = new Vector3((x1 + Random.value * (Mathf.Abs(x1) + x2)), (y1 + Random.value * (Mathf.Abs(y1) + y2)));
 
-        GameObject novaPlanta = Instantiate(planta, v1, transform.rotation);
-        plantas.Add(novaPlanta);
+            GameObject novaPlanta = Instantiate(planta, v1, transform.rotation);
+            plantas.Add(novaPlanta);
+        }
+        
     }
 
 

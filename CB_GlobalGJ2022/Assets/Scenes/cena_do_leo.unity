@@ -271,7 +271,7 @@ MonoBehaviour:
   xWalls: 10
   extremo1: {fileID: 1373042839}
   extremo2: {fileID: 1425683556}
-  maxQtdAnimais: 20
+  maxQtdAnimais: 30
   ratioHerb: 0
   herbQtd: 0
   predQtd: 0
