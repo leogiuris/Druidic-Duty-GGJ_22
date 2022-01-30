@@ -264,6 +264,9 @@ MonoBehaviour:
   isPaused: 0
   isPlaying: 0
   WinTime: 600
+  taDoidao: 0
+  doidaoTime: 10
+  intervaloPlanta: 2
   yWalls: 10
   xWalls: 10
   extremo1: {fileID: 1373042839}
@@ -1089,7 +1092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9104071680662327429, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Canvas_HUD
       objectReference: {fileID: 0}
     - target: {fileID: 9104071680662327430, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
       propertyPath: m_Camera

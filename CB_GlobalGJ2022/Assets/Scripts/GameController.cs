@@ -9,9 +9,12 @@ public class GameController : MonoBehaviour
 
     public bool isPaused = false;
     public bool isPlaying = false;
-    public bool taDoidao = false;
     public float WinTime = 600;
-    
+
+    public bool taDoidao = false;
+    public float doidaoTime = 10f;
+    public float intervaloPlanta = 2f;
+
     private float lastSpawnTime = 0f;
     public int yWalls = 10;
     public int xWalls = 20;
@@ -214,7 +217,7 @@ public class GameController : MonoBehaviour
         {
             if (!taDoidao)
             {
-                Time.timeScale = 5f;
+                Time.timeScale = doidaoTime;
                 taDoidao = true;
             }
             else
@@ -241,7 +244,7 @@ public class GameController : MonoBehaviour
         barraEquilibrio.value = equilibrio;
         textoTempo.text = tempo.ToString("F1").Replace(',', '.'); ;
         GC_input();
-        if (tempo - lastSpawnTime > 3f)
+        if (tempo - lastSpawnTime > intervaloPlanta)
         {
             lastSpawnTime = tempo;
             RandomPlantSpawn();
