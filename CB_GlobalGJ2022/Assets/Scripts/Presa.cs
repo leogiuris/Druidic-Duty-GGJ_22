@@ -10,19 +10,38 @@ public class Presa : Animal
 
     public void EatVeg(GameObject planta)
     {
+        anim.SetTrigger("comer");
         hunger--;
-        gC.SpawnaAnimal(sPresa, transform.position);
         minhaPlanta = planta;
-        gC.plantas.Remove(planta);
-        Destroy(planta);
+        speed = 0;
+        chaseSpeed = 0;
+;        
+    }
+    public void MataPlanta()
+    {
+        speed = tSpeed;
+        chaseSpeed = tChaseSpeed;
+        gC.SpawnaAnimal(sPresa, transform.position);
+        gC.plantas.Remove(minhaPlanta);
+        Destroy(minhaPlanta);
         
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Terreno")
         {
             flipper = flipper * -1;
+        }
+        if (collision.transform.tag == "Presa")
+        {
+            RandomizeDirection();
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Presa")
+        {
+            RandomizeDirection();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,10 +56,4 @@ public class Presa : Animal
             danger = collision.gameObject;
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-       
-
-    }
-
 }

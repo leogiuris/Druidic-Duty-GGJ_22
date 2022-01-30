@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    
+
     public bool isPaused = false;
     public bool isPlaying = false;
     public float WinTime = 600;
@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
     // hud
     public Slider barraEquilibrio;
     public float equilibrio;
-    
+
     public bool ChecaSeTaDentro(Vector3 v)
     {
         Vector3 e1 = extremo1.position;
@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour
 
     public bool LoseCondition()
     {
-        if(herbivoros.Count <= 0)
+        if (herbivoros.Count <= 0)
         {
             // herbivoros extintos
             Debug.Log("herbivoros extintos");
@@ -151,7 +151,7 @@ public class GameController : MonoBehaviour
         predSpawnLocations = new Vector3[pred_init_spawns];
         Timer.StartTimer();
 
-        for (int i = 0; i< herb_init_spawns; i++)
+        for (int i = 0; i < herb_init_spawns; i++)
         {
             herbSpawnLocations[i] = new Vector3((Random.value * 2 * xWalls) - xWalls, (Random.value * 2 * yWalls) - yWalls);
 
@@ -195,7 +195,7 @@ public class GameController : MonoBehaviour
     {
         float unga = predadores.Count;
         float bunga = herbivoros.Count;
-        equilibrio = 1/((unga + bunga)/ predadores.Count) ;
+        equilibrio = 1 / ((unga + bunga) / predadores.Count);
         barraEquilibrio.value = equilibrio;
         GC_input();
     }
