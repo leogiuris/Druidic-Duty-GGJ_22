@@ -9,7 +9,9 @@ public class GameController : MonoBehaviour
 
     public bool isPaused = false;
     public bool isPlaying = false;
+    public bool taDoidao = false;
     public float WinTime = 600;
+    
     private float lastSpawnTime = 0f;
     public int yWalls = 10;
     public int xWalls = 20;
@@ -207,6 +209,19 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetGame();
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (!taDoidao)
+            {
+                Time.timeScale = 5f;
+                taDoidao = true;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                taDoidao = false;
+            }
         }
     }
 
