@@ -22,7 +22,8 @@ public class Presa : Animal
         emoter.SetTrigger("none");
         speed = tSpeed;
         chaseSpeed = tChaseSpeed;
-        Breed(sPresa);
+        if (gC.herbivoros.Count < gC.maxQtdAnimais) 
+            Breed(sPresa);
         
         gC.plantas.Remove(minhaPlanta);
         Destroy(minhaPlanta);
@@ -61,6 +62,17 @@ public class Presa : Animal
         {
             flee = true;
             danger = collision.gameObject;
+        }
+    }
+    private void Update()
+    {
+        Eat();
+        if (child)
+        {
+            if (Timer.getTime() - age > 5f)
+            {
+                Grow();
+            }
         }
     }
 }

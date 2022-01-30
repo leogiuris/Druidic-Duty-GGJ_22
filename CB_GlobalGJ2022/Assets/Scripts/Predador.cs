@@ -20,7 +20,7 @@ public class Predador : Animal
         emoter.SetTrigger("none");
         speed = tSpeed;
         chaseSpeed = tChaseSpeed;
-        gC.SpawnaAnimal(sPredador, transform.position);
+        Breed(sPredador);
 
     }
 
@@ -28,6 +28,7 @@ public class Predador : Animal
     {
         if(collision.transform.tag == "Presa")
         {
+            if (child) return;
             Hunt(collision.gameObject);
         }
         if (collision.transform.tag == "Terreno")
@@ -58,5 +59,20 @@ public class Predador : Animal
         chaseSpeed = tChaseSpeed;
         emoter.SetTrigger("none");
     }
-    
+
+    private void Update()
+    {
+        if (!isDead)
+        {
+            Eat();
+            if (child)
+            {
+                if (Timer.getTime() - age > 10f)
+                {
+                    Grow();
+                }
+            }
+        }
+        
+    }
 }

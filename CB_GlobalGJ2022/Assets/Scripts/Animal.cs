@@ -11,8 +11,9 @@ public class Animal : MonoBehaviour
     private float hungerTimer;
     public float hungerTime;
 
-    private float age;
-    private bool child = true;
+    protected float age;
+    protected bool child = true;
+    public bool isDead = false;
     //caçar
     public bool chase;
     public GameObject alvo;
@@ -56,7 +57,8 @@ public class Animal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        age = Timer.getTime();
+        child = true;
+        age = moveTimer = hungerTimer = Timer.getTime();
         tChaseSpeed = chaseSpeed;
         tSpeed = speed;
         hunger = 0;
@@ -64,12 +66,11 @@ public class Animal : MonoBehaviour
         gC = GameObject.Find("gameController").GetComponent<GameController>();
         anim = gameObject.GetComponent<Animator>();
         rBody = gameObject.GetComponent<Rigidbody2D>();
-        moveTimer = Time.time;
+        //moveTimer = Time.time;
         moveTime = Random.Range(minMoveTime, maxMoveTime);        
         direction = Random.insideUnitCircle;
         transform.localScale = new Vector3(Mathf.Sign(direction.x) * 0.5f, 0.5f);
 
-        hungerTimer = hungerTime;
 
         //identificar se sou prese aou pred
         if (gameObject.GetComponent<Presa>())
@@ -84,7 +85,7 @@ public class Animal : MonoBehaviour
 
     }
 
-    void Grow()
+    protected void Grow()
     {
         child = false;
         transform.localScale = new Vector3(1, 1);
@@ -104,7 +105,7 @@ public class Animal : MonoBehaviour
             if (roaming)
             {
                 rBody.velocity = direction.normalized * speed * flipper;
-                if (Time.time - moveTimer > moveTime)
+                if (Timer.getTime() - moveTimer > moveTime)
                 {
                     RandomizeDirection();
                 }
@@ -121,7 +122,11 @@ public class Animal : MonoBehaviour
                     {
                         GetClosestAlvo(gC.plantas);
                     }
-
+                    if (alvo == null)
+                    {
+                        roaming = true;
+                        chase = false;
+                    }
                 }
                 else
                 {
@@ -150,14 +155,15 @@ public class Animal : MonoBehaviour
             }
         }
 
-        transform.localScale = new Vector3(Mathf.Sign(rBody.velocity.x)* scale, 1* scale);
+        transform.localScale = new Vector3(Mathf.Sign(rBody.velocity.x)* scale, 1 * scale);
 
     }
 
     public void RandomizeDirection()
     {
+        Debug.Log("randomize");
         direction = Random.insideUnitCircle;
-        moveTimer = Time.time;
+        moveTimer = Timer.getTime();
         moveTime = Random.Range(minMoveTime, maxMoveTime);
 
     }
@@ -166,7 +172,7 @@ public class Animal : MonoBehaviour
 
     public void GetClosestAlvo(List<GameObject> alvos)
     {
-        float minDist = Mathf.Infinity;
+        float minDist = 30f;
         foreach(GameObject t in alvos)
         {
             float dist = Vector3.Distance(transform.position, t.transform.position);
@@ -180,11 +186,13 @@ public class Animal : MonoBehaviour
 
     public void Eat()
     {
-        if(Time.time - hungerTimer > hungerTime)
+
+        if(Timer.getTime() - hungerTimer > hungerTime)
         {
             hunger++;
-            hungerTimer = Time.time;
+            hungerTimer = Timer.getTime();
         }
+
         if(hunger > chaseHunger)
         {            
             chase = true;
@@ -199,20 +207,24 @@ public class Animal : MonoBehaviour
                 emoter.SetTrigger("fome");
             }
         }
+
         else
         {
             alvo = null;
             chase = false;
             roaming = true;
         }
-        if(hunger == maxHunger)
+        if(hunger == maxHunger && !isDead)
         {
+            Debug.Log("morreu de fome");
+            isDead = true;
             Die();
         }
     }
 
     public void Breed(GameObject animal)
     {
+        
         gC.SpawnaAnimal(animal, transform.position);
     }
 
@@ -241,17 +253,12 @@ public class Animal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Eat();
-        if (child)
-        {
-            if(Timer.getTime() - age > 3f)
-            {
-                Grow();
-            }
-        }
+         //Eat();
+        
     }
     void FixedUpdate()
     {
-        Move();
+        if(!isDead)
+            Move();
     }
 }
