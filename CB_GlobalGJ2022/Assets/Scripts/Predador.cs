@@ -8,6 +8,7 @@ public class Predador : Animal
     public float stunTime;
     void Hunt(GameObject presa)
     {
+        FindObjectOfType<AudioManager>().Play("grifocome");
         this.hunger = 0;
         anim.SetTrigger("comer");
         presa.GetComponent<Animal>().Die();
@@ -17,6 +18,7 @@ public class Predador : Animal
     }
     public void Matar()
     {
+        
         emoter.SetTrigger("none");
         speed = tSpeed;
         chaseSpeed = tChaseSpeed;

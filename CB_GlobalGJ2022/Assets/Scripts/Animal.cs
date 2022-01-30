@@ -116,6 +116,7 @@ public class Animal : MonoBehaviour
                 {
                     if (!souPresa)
                     {
+                        FindObjectOfType<AudioManager>().Play("grifoataca");
                         GetClosestAlvo(gC.herbivoros);
                     }
                     else
@@ -127,6 +128,7 @@ public class Animal : MonoBehaviour
                         roaming = true;
                         chase = false;
                     }
+                    
                 }
                 else
                 {
@@ -230,11 +232,13 @@ public class Animal : MonoBehaviour
     {
         if(souPresa)
         {
+            FindObjectOfType<AudioManager>().Play("coelhomorre");
             gC.herbivoros.Remove(this.gameObject);
             gC.herbQtd--;
         }
         else
         {
+            FindObjectOfType<AudioManager>().Play("grifomorre");
             gC.predadores.Remove(this.gameObject);
             gC.predQtd--;
         }

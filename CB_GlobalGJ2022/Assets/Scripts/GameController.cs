@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
 {
     public PlayerController player;
 
+    
+
     public bool isPaused = false;
     public bool isPlaying = false;
     public bool gameOver = false;
@@ -119,6 +121,7 @@ public class GameController : MonoBehaviour
     {
         if (isPaused)
         {
+            FindObjectOfType<AudioManager>().Play("somdespause");
             pausePanel.SetActive(false);
             Time.timeScale = 1f;
             isPaused = false;
@@ -126,6 +129,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            FindObjectOfType<AudioManager>().Play("sompause");
             pausePanel.SetActive(true);
             Time.timeScale = 0f;
             isPaused = true;
@@ -195,7 +199,7 @@ public class GameController : MonoBehaviour
     void GameOver()
     {
         isPlaying = false;
-
+        FindObjectOfType<AudioManager>().Play("MusicaGameOver");
         gameOver = true;
         berryUI.SetActive(false);
         bushUI.SetActive(false);
@@ -240,6 +244,7 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
+            FindObjectOfType<AudioManager>().Play("MusicaGameOver");
             Debug.Log(Mathf.Sign(-2f));
         }
         if (Input.GetKeyDown(KeyCode.R))

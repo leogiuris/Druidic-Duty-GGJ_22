@@ -19,6 +19,7 @@ public class Presa : Animal
     }
     public void MataPlanta()
     {
+        FindObjectOfType<AudioManager>().Play("coelhocome");
         emoter.SetTrigger("none");
         speed = tSpeed;
         chaseSpeed = tChaseSpeed;

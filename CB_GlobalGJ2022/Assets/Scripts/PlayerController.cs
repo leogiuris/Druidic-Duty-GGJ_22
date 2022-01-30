@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour
 
         if (sementes > 0 && !mouse.GetComponent<MouseController>().emArvore && gC.ChecaSeTaDentro(t))
         {
+            FindObjectOfType<AudioManager>().Play("playercomida");
             sementes--;
             GameObject novaPlanta = Instantiate(planta, t, transform.rotation);
             gC.plantas.Add(novaPlanta);
@@ -140,6 +141,7 @@ public class PlayerController : MonoBehaviour
         t.z = 0;
         if (paredes > 0 && !mouse.GetComponent<MouseController>().emArvore && gC.ChecaSeTaDentro(t))
         {
+            FindObjectOfType<AudioManager>().Play("playerparede");
             GameObject novaParede = Instantiate(parede, t, transform.rotation);
             Parede paredeScript = novaParede.GetComponent<Parede>();
             paredeScript.dono = this;
