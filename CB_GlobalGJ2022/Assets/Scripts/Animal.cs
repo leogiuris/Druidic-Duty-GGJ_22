@@ -70,6 +70,7 @@ public class Animal : MonoBehaviour
         transform.localScale = new Vector3(Mathf.Sign(direction.x) * 0.5f, 0.5f);
 
         hungerTimer = hungerTime;
+
         //identificar se sou prese aou pred
         if (gameObject.GetComponent<Presa>())
         {
@@ -91,7 +92,13 @@ public class Animal : MonoBehaviour
 
     void Move()
     {
-        float diraux = Mathf.Sign(rBody.velocity.x);
+
+        float scale = 1f ;
+        if (child)
+        {
+            scale = 0.6f;
+        }
+
         if (!flee)
         {
             if (roaming)
@@ -143,32 +150,16 @@ public class Animal : MonoBehaviour
             }
         }
 
-
-        //transform.localScale = new Vector3(-Mathf.Sign(rBody.velocity.x), 1, 1);
-
-        //presepada
-        if (diraux * Mathf.Sign(rBody.velocity.x) < 0)
-        {
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-
-            
-        }
-
-
-
+        transform.localScale = new Vector3(Mathf.Sign(rBody.velocity.x)* scale, 1* scale);
 
     }
+
     public void RandomizeDirection()
     {
         direction = Random.insideUnitCircle;
         moveTimer = Time.time;
         moveTime = Random.Range(minMoveTime, maxMoveTime);
 
-        Vector3 theScale = transform.localScale;
-        theScale.x *= Mathf.Sign(direction.x);
-        transform.localScale = theScale;
     }
 
 
@@ -219,9 +210,10 @@ public class Animal : MonoBehaviour
             Die();
         }
     }
-    public void Breed()
-    {
 
+    public void Breed(GameObject animal)
+    {
+        gC.SpawnaAnimal(animal, transform.position);
     }
 
     public void Die()
@@ -252,7 +244,7 @@ public class Animal : MonoBehaviour
         Eat();
         if (child)
         {
-            if(Timer.getTime() - age > 2f)
+            if(Timer.getTime() - age > 3f)
             {
                 Grow();
             }

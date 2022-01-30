@@ -22,7 +22,8 @@ public class Presa : Animal
         emoter.SetTrigger("none");
         speed = tSpeed;
         chaseSpeed = tChaseSpeed;
-        gC.SpawnaAnimal(sPresa, transform.position);
+        Breed(sPresa);
+        
         gC.plantas.Remove(minhaPlanta);
         Destroy(minhaPlanta);
         
