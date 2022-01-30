@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         gC = GameObject.Find("gameController").GetComponent<GameController>();
         rBody = gameObject.GetComponent<Rigidbody2D>();
         mouse = GetComponent<MouseController>();
-
+        dir = 1f;
     }
 
 

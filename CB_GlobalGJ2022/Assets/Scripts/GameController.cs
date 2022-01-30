@@ -40,6 +40,10 @@ public class GameController : MonoBehaviour
     // hud
     public Slider barraEquilibrio;
     public float equilibrio;
+    public Text textoTempo;
+
+
+
 
     public bool ChecaSeTaDentro(Vector3 v)
     {
@@ -86,6 +90,7 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("cena_do_leo");
 
     }
+
 
 
     public void Pause()
@@ -197,6 +202,8 @@ public class GameController : MonoBehaviour
         float bunga = herbivoros.Count;
         equilibrio = 1 / ((unga + bunga) / predadores.Count);
         barraEquilibrio.value = equilibrio;
+        textoTempo.text = Timer.getTime().ToString("F1").Replace(',', '.'); ;
         GC_input();
+        LoseCondition();
     }
 }
