@@ -10,11 +10,18 @@ public class GameController : MonoBehaviour
     public bool isPaused = false;
     public bool isPlaying = false;
     public float WinTime = 600;
+
+    public bool taDoidao = false;
+    public float doidaoTime = 10f;
+    public float intervaloPlanta = 2f;
+
+    private float lastSpawnTime = 0f;
     public int yWalls = 10;
     public int xWalls = 20;
 
     public Transform extremo1;
     public Transform extremo2;
+    private float x1, x2, y1, y2;
 
     public int maxQtdAnimais = 20;
     public float ratioHerb;
@@ -47,14 +54,12 @@ public class GameController : MonoBehaviour
 
     public bool ChecaSeTaDentro(Vector3 v)
     {
-        Vector3 e1 = extremo1.position;
-        Vector3 e2 = extremo2.position;
 
-        if (v.x > e2.x || v.x < e1.x)
+        if (v.x > x2 || v.x < x1)
         {
             return false;
         }
-        else if (v.y > e1.y || v.y < e2.y)
+        else if (v.y > y2 || v.y < y1)
         {
             return false;
         }
@@ -113,6 +118,24 @@ public class GameController : MonoBehaviour
     }
 
 
+    /*
+     *              NATUREZA
+     */
+
+    public void RandomPlantSpawn()
+    {
+        Vector3 v1 = new Vector3(  (x1+Random.value*(Mathf.Abs(x1)+x2))  , (y1+Random.value*(Mathf.Abs(y1)+y2))  ) ;
+
+        GameObject novaPlanta = Instantiate(planta, v1, transform.rotation);
+        plantas.Add(novaPlanta);
+    }
+
+
+
+
+
+
+
     public void SpawnaAnimal(GameObject animal, Vector3 pos)
     {
         GameObject newAnimal = Instantiate(animal, pos, transform.rotation);
@@ -155,6 +178,8 @@ public class GameController : MonoBehaviour
         herbSpawnLocations = new Vector3[herb_init_spawns];
         predSpawnLocations = new Vector3[pred_init_spawns];
         Timer.StartTimer();
+        x1 = extremo1.position.x;   y1 = extremo1.position.y;
+        x2 = extremo2.position.x;   y2 = extremo2.position.y;
 
         for (int i = 0; i < herb_init_spawns; i++)
         {
@@ -182,11 +207,24 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log(Timer.getTime());
+            RandomPlantSpawn();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetGame();
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (!taDoidao)
+            {
+                Time.timeScale = doidaoTime;
+                taDoidao = true;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                taDoidao = false;
+            }
         }
     }
 
@@ -195,15 +233,23 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("StartMenu");
     }
 
+
     // Update is called once per frame
     void Update()
     {
+        float tempo = Timer.getTime();
         float unga = predadores.Count;
         float bunga = herbivoros.Count;
         equilibrio = 1 / ((unga + bunga) / predadores.Count);
         barraEquilibrio.value = equilibrio;
-        textoTempo.text = Timer.getTime().ToString("F1").Replace(',', '.'); ;
+        textoTempo.text = tempo.ToString("F1").Replace(',', '.'); ;
         GC_input();
+        if (tempo - lastSpawnTime > intervaloPlanta)
+        {
+            lastSpawnTime = tempo;
+            RandomPlantSpawn();
+        }
+
         LoseCondition();
     }
 }
