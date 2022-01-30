@@ -18,8 +18,11 @@ public class PlayerController : MonoBehaviour
     private bool plantar;
 
     public bool emArvore = false;
+    public int maxSementes;
     public int sementes;
     public GameObject planta;
+    public float coolDown;
+    public float plantTimer;
 
     //mouse
     public float castDistance;
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        plantTimer = Time.time;
         paredes = maxParedes;
         anim = gameObject.GetComponent<Animator>();
         gC = GameObject.Find("gameController").GetComponent<GameController>();
@@ -52,7 +56,11 @@ public class PlayerController : MonoBehaviour
     {
         InputManager();
         if (paredes > maxParedes) paredes = maxParedes;
-
+        if(Time.time - plantTimer > coolDown)
+        {
+            sementes++;
+            plantTimer = Time.time;
+        }
     }
 
 
@@ -77,7 +85,7 @@ public class PlayerController : MonoBehaviour
         {
             Plantar(mouse.getMousePos());
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetTrigger("boom");
         }
@@ -117,9 +125,10 @@ public class PlayerController : MonoBehaviour
 
         if (sementes > 0 && !mouse.GetComponent<MouseController>().emArvore && gC.ChecaSeTaDentro(t))
         {
+            sementes--;
             GameObject novaPlanta = Instantiate(planta, t, transform.rotation);
             gC.plantas.Add(novaPlanta);
-            sementes--;
+            
         }
         else
         {

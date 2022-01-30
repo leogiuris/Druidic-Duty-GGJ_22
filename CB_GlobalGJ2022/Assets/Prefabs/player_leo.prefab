@@ -104,8 +104,11 @@ MonoBehaviour:
   speed: 6
   gC: {fileID: 0}
   emArvore: 0
-  sementes: 54
+  maxSementes: 10
+  sementes: 5
   planta: {fileID: 2353302135356920779, guid: 2482a6a394ade924785d86d9b60b336f, type: 3}
+  coolDown: 10
+  plantTimer: 0
   castDistance: 0
   maxParedes: 20
   paredes: 0
