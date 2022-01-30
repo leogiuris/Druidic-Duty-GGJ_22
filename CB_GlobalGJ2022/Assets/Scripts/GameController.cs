@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 
     public bool isPaused = false;
     public bool isPlaying = false;
+    public bool gameOver = false;
     public float WinTime = 600;
 
     public bool taDoidao = false;
@@ -42,6 +43,7 @@ public class GameController : MonoBehaviour
     public GameObject Herb;
     public GameObject Pred;
     public GameObject pausePanel;
+    public GameObject gameOverPanel;
 
 
     // hud
@@ -73,6 +75,10 @@ public class GameController : MonoBehaviour
         int i = 0;
         isPlaying = true;
         isPaused = false;
+        gameOver = false;
+
+        pausePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
         Time.timeScale = 1f;
 
         while (i < herb_init_spawns)
@@ -90,9 +96,9 @@ public class GameController : MonoBehaviour
     }
 
 
-    void ResetGame()
+    public void ResetGame()
     {
-        SceneManager.LoadScene("cena_do_leo");
+        SceneManager.LoadScene("cena_do_leo2");
 
     }
 
@@ -162,18 +168,27 @@ public class GameController : MonoBehaviour
         if (herbivoros.Count <= 0)
         {
             // herbivoros extintos
-            Debug.Log("herbivoros extintos");
-            ResetGame();
+            
+            GameOver();
         }
         if (predadores.Count <= 0)
         {
             // predadores extintos
-            Debug.Log("predadores extintos");
-            ResetGame();
+            
+            GameOver();
         }
+        
         return false;
     }
 
+    void GameOver()
+    {
+        isPlaying = false;
+        gameOver = true;
+        barraEquilibrio.gameObject.SetActive(false);
+        Time.timeScale = 0f;
+        gameOverPanel.SetActive(true);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -217,6 +232,11 @@ public class GameController : MonoBehaviour
         {
             ResetGame();
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if(gameOver)
+                SceneManager.LoadScene("StartMenu");
+        }
         if (Input.GetKeyDown(KeyCode.T))
         {
             if (!taDoidao)
@@ -241,12 +261,15 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        LoseCondition();
         float tempo = Timer.getTime();
         float unga = predadores.Count;
         float bunga = herbivoros.Count;
         equilibrio = 1 / ((unga + bunga) / predadores.Count);
         barraEquilibrio.value = equilibrio;
-        textoTempo.text = tempo.ToString("F1").Replace(',', '.'); ;
+
+        if(!gameOver) textoTempo.text = tempo.ToString("F1").Replace(',', '.'); ;
+
         GC_input();
         if (tempo - lastSpawnTime > intervaloPlanta)
         {
@@ -254,6 +277,6 @@ public class GameController : MonoBehaviour
             RandomPlantSpawn();
         }
 
-        LoseCondition();
+        
     }
 }

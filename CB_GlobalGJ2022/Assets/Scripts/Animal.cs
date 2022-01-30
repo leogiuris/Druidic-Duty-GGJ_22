@@ -161,7 +161,6 @@ public class Animal : MonoBehaviour
 
     public void RandomizeDirection()
     {
-        Debug.Log("randomize");
         direction = Random.insideUnitCircle;
         moveTimer = Timer.getTime();
         moveTime = Random.Range(minMoveTime, maxMoveTime);
@@ -216,7 +215,6 @@ public class Animal : MonoBehaviour
         }
         if(hunger == maxHunger && !isDead)
         {
-            Debug.Log("morreu de fome");
             isDead = true;
             Die();
         }

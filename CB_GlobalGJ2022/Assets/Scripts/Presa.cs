@@ -66,12 +66,15 @@ public class Presa : Animal
     }
     private void Update()
     {
-        Eat();
-        if (child)
+        if (!isDead)
         {
-            if (Timer.getTime() - age > 5f)
+            Eat();
+            if (child)
             {
-                Grow();
+                if (Timer.getTime() - age > 10f)
+                {
+                    Grow();
+                }
             }
         }
     }
