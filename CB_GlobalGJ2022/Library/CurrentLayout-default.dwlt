@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1360
     height: 685
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -45,10 +45,10 @@ MonoBehaviour:
     y: 30
     width: 1360
     height: 635
-  m_MinSize: {x: 678, y: 492}
+  m_MinSize: {x: 578, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 72
+  controlID: 127
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -150,7 +150,7 @@ MonoBehaviour:
     y: 0
     width: 1360
     height: 685
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -223,10 +223,10 @@ MonoBehaviour:
     y: 0
     width: 932
     height: 635
-  m_MinSize: {x: 403, y: 492}
+  m_MinSize: {x: 303, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 73
+  controlID: 86
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,10 +248,10 @@ MonoBehaviour:
     y: 0
     width: 932
     height: 357
-  m_MinSize: {x: 403, y: 221}
+  m_MinSize: {x: 303, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 74
+  controlID: 895
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: AnimatorControllerTool
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -271,14 +271,14 @@ MonoBehaviour:
     y: 0
     width: 604
     height: 357
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 16}
   - {fileID: 17}
   - {fileID: 12}
-  m_Selected: 1
+  m_Selected: 2
   m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -312,6 +312,7 @@ MonoBehaviour:
     - {fileID: 7807892921375022576, guid: 146af558ab5a49e4e960de1f80e27304, type: 2}
     - {fileID: 2671008892541858756, guid: 05fb2cc7935a38b469f8001749d0ccce, type: 2}
     - {fileID: -2083682341689320829, guid: 2cb307b9e8016b547ab0a6647af6bcf5, type: 2}
+    - {fileID: -2504512370802894970, guid: b71e5b19113a8b044857a4bffa708d54, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.37714955
       e01: 0
@@ -361,14 +362,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.4294737
+    - e00: 0.7511522
       e01: 0
       e02: 0
-      e03: -6.473709
+      e03: -151.70729
       e10: 0
-      e11: 0.4294737
+      e11: 0.7511522
       e12: 0
-      e13: 87.56842
+      e13: 144.10385
       e20: 0
       e21: 0
       e22: 1
@@ -377,14 +378,30 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.38328376
+    - e00: 0.4253307
       e01: 0
       e02: 0
-      e03: -57.128265
+      e03: -79.91415
       e10: 0
-      e11: 0.38328376
+      e11: 0.4253307
       e12: 0
-      e13: 145.75061
+      e13: 104.074196
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -394,9 +411,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 2b907a3c86397dc4cb7350dc40ff3b62, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 05fb2cc7935a38b469f8001749d0ccce, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -8247938602538532058, guid: 2b907a3c86397dc4cb7350dc40ff3b62, type: 2}
+  - m_Target: {fileID: 2671008892541858756, guid: 05fb2cc7935a38b469f8001749d0ccce, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -460,9 +477,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ea440000
-    m_LastClickedID: 17642
-    m_ExpandedIDs: 00000000d4440000d6440000d8440000da440000
+    m_SelectedIDs: ec440000
+    m_LastClickedID: 17644
+    m_ExpandedIDs: 00000000d4440000d6440000d8440000da440000ea440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -611,9 +628,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 80a6ffff
       m_LastClickedID: 0
-      m_ExpandedIDs: 98acffffa2acffffcab0ffffd4b0ffff2eb9ffffe4baffff40fbffff5efbffff
+      m_ExpandedIDs: a892ffff26650000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -665,17 +682,17 @@ MonoBehaviour:
   m_ShowContextualTools: 0
   m_WindowGUID: fda9f5296a7392540ae8e81e35d769b6
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 6917529027641081856
-  m_SceneIsLit: 1
+  m_OverrideSceneCullingMask: 0
+  m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.013400614, y: 0.91171974, z: -6.8015084}
+    m_Target: {x: 0.038021788, y: -1.288039, z: -0.5764424}
     speed: 2
-    m_Value: {x: 0.013400614, y: 0.91171974, z: -6.8015084}
+    m_Value: {x: 9.180378, y: 1.950087, z: -11.482359}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -687,7 +704,7 @@ MonoBehaviour:
   m_SceneViewState:
     m_AlwaysRefresh: 0
     showFog: 1
-    showSkybox: 1
+    showSkybox: 0
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -726,9 +743,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2.512522
+    m_Target: 4.1086216
     speed: 2
-    m_Value: 2.512522
+    m_Value: 15.661015
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -811,7 +828,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
