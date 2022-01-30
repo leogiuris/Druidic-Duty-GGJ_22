@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 2208010670293678228}
   m_Layer: 6
   m_Name: boom Collider
-  m_TagString: Danger
+  m_TagString: Boom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

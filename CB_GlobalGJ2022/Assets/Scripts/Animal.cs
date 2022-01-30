@@ -47,6 +47,9 @@ public class Animal : MonoBehaviour
     [HideInInspector]
     public float flipper = 1;
 
+    //emotes
+    public Animator emoter;
+
 
 
     // Start is called before the first frame update
@@ -93,9 +96,14 @@ public class Animal : MonoBehaviour
                 if (alvo == null)
                 {
                     if (!souPresa)
+                    {
                         GetClosestAlvo(gC.herbivoros);
+                    }
                     else
+                    {
                         GetClosestAlvo(gC.plantas);
+                    }
+
                 }
                 else
                 {
@@ -108,11 +116,12 @@ public class Animal : MonoBehaviour
         {
             if (danger != null)
             {
-                
+                emoter.SetTrigger("medo");
                 direction = transform.position - danger.transform.position;
                 rBody.velocity = direction.normalized * chaseSpeed;
                 if(Vector3.Distance(transform.position, danger.transform.position) > safeRange)
                 {
+                    emoter.SetTrigger("none");
                     danger = null;
                     flee = false;
                 }
@@ -155,6 +164,15 @@ public class Animal : MonoBehaviour
         {            
             chase = true;
             roaming = false;
+            if (!souPresa)
+            {
+
+                emoter.SetTrigger("hunt");
+            }
+            else
+            {
+                emoter.SetTrigger("fome");
+            }
         }
         else
         {
