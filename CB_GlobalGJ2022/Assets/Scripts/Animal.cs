@@ -18,6 +18,7 @@ public class Animal : MonoBehaviour
     public GameObject alvo;
 
     //componentes
+    private CircleCollider2D myCol;
     [HideInInspector]
     public Animator anim;
     [HideInInspector]
@@ -58,6 +59,7 @@ public class Animal : MonoBehaviour
         tChaseSpeed = chaseSpeed;
         tSpeed = speed;
         hunger = 0;
+        myCol = gameObject.GetComponent<CircleCollider2D>();
         gC = GameObject.Find("gameController").GetComponent<GameController>();
         anim = gameObject.GetComponent<Animator>();
         rBody = gameObject.GetComponent<Rigidbody2D>();
@@ -202,6 +204,13 @@ public class Animal : MonoBehaviour
             gC.predadores.Remove(this.gameObject);
             gC.predQtd--;
         }
+        speed = 0;
+        chaseSpeed = 0;
+        myCol.enabled = false;
+        anim.SetTrigger("dead");
+    }
+    public void Poof()
+    {
         Destroy(gameObject);
     }
 
