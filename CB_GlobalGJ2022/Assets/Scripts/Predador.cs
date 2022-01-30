@@ -8,7 +8,7 @@ public class Predador : Animal
     public float stunTime;
     void Hunt(GameObject presa)
     {
-        this.hunger--;
+        this.hunger = 0;
         anim.SetTrigger("comer");
         presa.GetComponent<Animal>().Die();
         speed = 0;
@@ -17,6 +17,7 @@ public class Predador : Animal
     }
     public void Matar()
     {
+        emoter.SetTrigger("none");
         speed = tSpeed;
         chaseSpeed = tChaseSpeed;
         gC.SpawnaAnimal(sPredador, transform.position);
@@ -38,32 +39,24 @@ public class Predador : Animal
             RandomizeDirection();
         }
     }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.transform.tag == "Predador")
-        {
-            RandomizeDirection();
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Danger")
+        if (collision.transform.tag == "Boom")
         {
-            if(collision.gameObject.GetComponentInParent<Transform>().tag != "Predador")
-            {
-                StartCoroutine(Stun());
-            }
-            
+            Debug.Log("uga");
+            StartCoroutine(Stun());
         }
     }
     IEnumerator Stun()
     {
+        emoter.SetTrigger("medo");
         print("ui");
         speed = 0;
         chaseSpeed = 0;
         yield return new WaitForSeconds(stunTime);
         speed = tSpeed;
         chaseSpeed = tChaseSpeed;
+        emoter.SetTrigger("none");
     }
     
 }

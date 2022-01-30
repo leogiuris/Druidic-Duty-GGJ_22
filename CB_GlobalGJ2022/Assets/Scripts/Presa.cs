@@ -11,7 +11,7 @@ public class Presa : Animal
     public void EatVeg(GameObject planta)
     {
         anim.SetTrigger("comer");
-        hunger--;
+        hunger = 0;
         minhaPlanta = planta;
         speed = 0;
         chaseSpeed = 0;
@@ -19,6 +19,7 @@ public class Presa : Animal
     }
     public void MataPlanta()
     {
+        emoter.SetTrigger("none");
         speed = tSpeed;
         chaseSpeed = tChaseSpeed;
         gC.SpawnaAnimal(sPresa, transform.position);
@@ -51,6 +52,11 @@ public class Presa : Animal
             
         }
         if (collision.transform.tag == "Danger")
+        {
+            flee = true;
+            danger = collision.gameObject;
+        }
+        if (collision.transform.tag == "Boom")
         {
             flee = true;
             danger = collision.gameObject;
