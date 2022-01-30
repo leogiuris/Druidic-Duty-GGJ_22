@@ -198,5 +198,6 @@ public class GameController : MonoBehaviour
         equilibrio = 1 / ((unga + bunga) / predadores.Count);
         barraEquilibrio.value = equilibrio;
         GC_input();
+        LoseCondition();
     }
 }
