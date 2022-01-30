@@ -11,8 +11,8 @@ public class Animal : MonoBehaviour
     private float hungerTimer;
     public float hungerTime;
 
-    public int age;
-
+    private float age;
+    private bool child = true;
     //caçar
     public bool chase;
     public GameObject alvo;
@@ -56,6 +56,7 @@ public class Animal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        age = Timer.getTime();
         tChaseSpeed = chaseSpeed;
         tSpeed = speed;
         hunger = 0;
@@ -66,6 +67,7 @@ public class Animal : MonoBehaviour
         moveTimer = Time.time;
         moveTime = Random.Range(minMoveTime, maxMoveTime);        
         direction = Random.insideUnitCircle;
+        transform.localScale = new Vector3(Mathf.Sign(direction.x) * 0.5f, 0.5f);
 
         hungerTimer = hungerTime;
         //identificar se sou prese aou pred
@@ -81,8 +83,15 @@ public class Animal : MonoBehaviour
 
     }
 
+    void Grow()
+    {
+        child = false;
+        transform.localScale = new Vector3(1, 1);
+    }
+
     void Move()
     {
+        float diraux = Mathf.Sign(rBody.velocity.x);
         if (!flee)
         {
             if (roaming)
@@ -133,14 +142,37 @@ public class Animal : MonoBehaviour
                 flee = false;
             }
         }
-        transform.localScale = new Vector3(-Mathf.Sign(rBody.velocity.x), 1, 1);
+
+
+        //transform.localScale = new Vector3(-Mathf.Sign(rBody.velocity.x), 1, 1);
+
+        //presepada
+        if (diraux * Mathf.Sign(rBody.velocity.x) < 0)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+
+            
+        }
+
+
+
+
     }
     public void RandomizeDirection()
     {
         direction = Random.insideUnitCircle;
         moveTimer = Time.time;
         moveTime = Random.Range(minMoveTime, maxMoveTime);
+
+        Vector3 theScale = transform.localScale;
+        theScale.x *= Mathf.Sign(direction.x);
+        transform.localScale = theScale;
     }
+
+
+
     public void GetClosestAlvo(List<GameObject> alvos)
     {
         float minDist = Mathf.Infinity;
@@ -218,6 +250,13 @@ public class Animal : MonoBehaviour
     void Update()
     {
         Eat();
+        if (child)
+        {
+            if(Timer.getTime() - age > 2f)
+            {
+                Grow();
+            }
+        }
     }
     void FixedUpdate()
     {

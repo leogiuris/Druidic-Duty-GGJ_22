@@ -121,7 +121,6 @@ MonoBehaviour:
   chaseHunger: 2
   maxHunger: 5
   hungerTime: 10
-  age: 0
   chase: 0
   alvo: {fileID: 0}
   anim: {fileID: 0}

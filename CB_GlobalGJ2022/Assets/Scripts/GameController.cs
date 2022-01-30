@@ -211,7 +211,7 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            RandomPlantSpawn();
+            Debug.Log(Mathf.Sign(-2f));
         }
         if (Input.GetKeyDown(KeyCode.R))
         {

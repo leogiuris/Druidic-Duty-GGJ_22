@@ -265,8 +265,8 @@ MonoBehaviour:
   isPlaying: 0
   WinTime: 600
   taDoidao: 0
-  doidaoTime: 10
-  intervaloPlanta: 1
+  doidaoTime: 0.5
+  intervaloPlanta: 0.1
   yWalls: 10
   xWalls: 10
   extremo1: {fileID: 1373042839}
@@ -1008,7 +1008,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4964592847082121512, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -103.100006
+      value: -103.099976
       objectReference: {fileID: 0}
     - target: {fileID: 4964592847082121512, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
       propertyPath: m_AnchoredPosition.y
