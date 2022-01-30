@@ -266,7 +266,7 @@ MonoBehaviour:
   WinTime: 600
   taDoidao: 0
   doidaoTime: 10
-  intervaloPlanta: 2
+  intervaloPlanta: 1
   yWalls: 10
   xWalls: 10
   extremo1: {fileID: 1373042839}
@@ -278,8 +278,8 @@ MonoBehaviour:
   plantas: []
   herbivoros: []
   predadores: []
-  herb_init_spawns: 4
-  pred_init_spawns: 4
+  herb_init_spawns: 5
+  pred_init_spawns: 5
   planta: {fileID: 2353302135356920779, guid: 2482a6a394ade924785d86d9b60b336f, type: 3}
   Herb: {fileID: 8093214911763347996, guid: c76beda2b8dc21a4c8de97ae95239c24, type: 3}
   Pred: {fileID: 7858850484775372117, guid: c853471e0f8466a48b5ad71da34c05e1, type: 3}
@@ -773,6 +773,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7580478032242710487, guid: f115707c3f0732e4eab8eb5b79254ebe, type: 3}
+      propertyPath: orthographic size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7638549860312390662, guid: f115707c3f0732e4eab8eb5b79254ebe, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -853,7 +857,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SAFODA
+  m_Text: MAIN MENU
 --- !u!222 &1547503695
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1002,6 +1006,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4964592847082121512, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -103.100006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964592847082121512, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -81.399994
+      objectReference: {fileID: 0}
     - target: {fileID: 9104071679793382833, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -70.899994
@@ -1098,6 +1110,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2094300432}
+    - target: {fileID: 9104071680662327430, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104071680662327430, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104071680662327431, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9104071681077934658, guid: 52b373aed9af5364aafa387734bf7c76, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
