@@ -28,10 +28,16 @@ public class PlayerController : MonoBehaviour
     //animação
     private Animator anim;
 
+    //paredes
+    public int maxParedes;
+    public int paredes;
+    public GameObject parede;
+
 
 
     void Start()
     {
+        paredes = maxParedes;
         anim = gameObject.GetComponent<Animator>();
         gC = GameObject.Find("gameController").GetComponent<GameController>();
         rBody = gameObject.GetComponent<Rigidbody2D>();
@@ -45,6 +51,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         InputManager();
+        if (paredes > maxParedes) paredes = maxParedes;
 
     }
 
@@ -73,6 +80,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             anim.SetTrigger("boom");
+        }
+        if (Input.GetMouseButton(1))
+        {
+            CriarParede(mouse.getMousePos());
         }
 
     }
@@ -115,6 +126,22 @@ public class PlayerController : MonoBehaviour
             Debug.Log("não pode plantar");
         }
     }
+    private void CriarParede(Vector3 t)
+    {
+        t.z = 0;
+        if (paredes > 0 && !mouse.GetComponent<MouseController>().emArvore && gC.ChecaSeTaDentro(t))
+        {
+            GameObject novaParede = Instantiate(parede, t, transform.rotation);
+            Parede paredeScript = novaParede.GetComponent<Parede>();
+            paredeScript.dono = this;
+            paredes--;
+        }
+        else
+        {
+            Debug.Log("não pode parede");
+        }
+    }
+
 
 
     private void OnTriggerStay2D(Collider2D collision)

@@ -33,8 +33,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4361298168109353781}
   - {fileID: 1738370131576194481}
+  - {fileID: 7580478032242710312}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,6 +107,9 @@ MonoBehaviour:
   sementes: 54
   planta: {fileID: 2353302135356920779, guid: 2482a6a394ade924785d86d9b60b336f, type: 3}
   castDistance: 0
+  maxParedes: 20
+  paredes: 0
+  parede: {fileID: 1674240998400692181, guid: e360c437bffd1184f82d3198c96d105a, type: 3}
 --- !u!50 &3496615417137297041
 Rigidbody2D:
   serializedVersion: 4
@@ -217,7 +220,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3496615417137297055}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2208010670293678228
 CircleCollider2D:
@@ -235,24 +238,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 8
---- !u!1001 &3312578474411761611
+--- !u!1001 &8668744950770942934
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 3496615417137297055}
     m_Modifications:
-    - target: {fileID: 1255846652196547785, guid: 69e0c9ae5e9a5bf49bc58cb57eb28256, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1260679150215320578, guid: 69e0c9ae5e9a5bf49bc58cb57eb28256, type: 3}
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
     - target: {fileID: 1260679150215320830, guid: 69e0c9ae5e9a5bf49bc58cb57eb28256, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1260679150215320830, guid: 69e0c9ae5e9a5bf49bc58cb57eb28256, type: 3}
       propertyPath: m_LocalPosition.x
@@ -296,8 +295,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69e0c9ae5e9a5bf49bc58cb57eb28256, type: 3}
---- !u!4 &4361298168109353781 stripped
+--- !u!4 &7580478032242710312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1260679150215320830, guid: 69e0c9ae5e9a5bf49bc58cb57eb28256, type: 3}
-  m_PrefabInstance: {fileID: 3312578474411761611}
+  m_PrefabInstance: {fileID: 8668744950770942934}
   m_PrefabAsset: {fileID: 0}
