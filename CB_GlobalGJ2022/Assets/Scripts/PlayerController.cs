@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
         transform.localScale = new Vector3(dir, 1, 1);
         if(rBody.velocity != Vector2.zero)
         {
+            
             anim.SetBool("moving", true);
         }
         else
