@@ -1,4 +1,4 @@
-# GGJ_22
+# Druidic Duty
 
 This prototype was submitted for 2022's Global Game Jam!
 
